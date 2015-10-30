@@ -1,7 +1,7 @@
 from ase import Atoms
 from ase.data import s22
 import numpy as np
-from calc_scme2015 import CALC_SCME
+from SCME.CALC_SCME2 import CALC_SCME
 from ase_qmscme import ase_qmscme
 from gpaw import GPAW
 dimer = s22.create_s22_system('Water_dimer')
@@ -20,10 +20,17 @@ trimer = dimer + nsys # 3 mols now
 
 qmidx = 3
 
-calc_qm = GPAW(h=0.20,mode='lcao',basis={None:'dzp'})
+calc_qm = GPAW(h=0.20,mode='lcao',basis={None:'dzp'},txt='simpletest.txt')
 eF = np.zeros((3,2))
-calc_mm = CALC_SCME(eF)
+calc_mm = CALC_SCME(trimer[qmidx:])
 
-dimer.set_calculator(ase_qmscme(trimer, qmidx=3,calc_qm=calc_qm,
-calc_mm=calc_mm,qm_cell=trimer.get_cell()))
-dimer.get_potential_energy()
+trimer.set_calculator(ase_qmscme(trimer, qmidx=3,calc_qm=calc_qm,
+                     calc_mm=calc_mm,qm_cell=trimer.get_cell()))
+Etot = trimer.get_potential_energy()
+
+print '\n################################## #'
+print '########### TOTAL ENERGY ######### #'
+print Etot
+print '################################## #'
+
+
