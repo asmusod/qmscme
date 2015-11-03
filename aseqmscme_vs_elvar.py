@@ -105,6 +105,7 @@ small.set_cell(C)
 #new_pos = small.positions
 #shift = old_pos - new_pos
 #scme.set_positions(scme.positions - shift[:,0])
+view(small)
 
 view(small + scme)
 view(trimer.copy())

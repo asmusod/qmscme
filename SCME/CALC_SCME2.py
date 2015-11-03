@@ -17,6 +17,7 @@ class CALC_SCME:
         self.eF      = eF
         self.qpoles  = None
         self.deF = deF
+        self.eT = None # total field out of SCME, made under infl of QM
 
     def ase_to_scme(self, atoms):
         # Reindex in SCME order (HHHH..OO..)
@@ -97,27 +98,24 @@ class CALC_SCME:
         #print np.shape(deF)
         #eQM = np.zeros([3,nummols])
         testin = np.zeros([3,3,nummols])
-
         testin = testin.reshape(3,3,nummols,order='F')
-        ff,epot,et,qpole = scme.main(scme_coords,cell.diagonal(),eF,deF)
+        ff,epot,eT,dipole,qpole = scme.main(scme_coords,cell.diagonal(),eF,deF)
+        # also get eT out: total field.
         #f = np.reshape(ff,[numatoms,3],order='F')
         f = np.reshape(ff,[numatoms,3])
         #testout = testout.reshape(nummols,3,3,order='F')
-
         # Convert force array back to ase coordinates
         aseforces = self.f_scme_to_ase(f)
- 
-        # H's get Ey and Ez ... HACKING
-        et = et.transpose() # F-> P     
-        #et = np.reshape(et,[numatoms]) 
-        # CHECK THIS PLEASE! WHERES THE REINDEXING?
+        dipole = dipole.transpose() # F-> P     
+        eT = eT.transpose() # F-> P     
 
-        # update atoms with  the new charges
-        self.dipoles = et.reshape(nummols, 3)
+        # update calc and atoms
+        self.dipoles = dipole.reshape(nummols, 3)
         self.qpoles  = qpole
         self.atoms = atoms 
         self.forces = aseforces
         self.energy = epot 
+        self.eT = eT
     def get_dipoles(self):
         if self.dipoles is None:
             print 'no dipoles initialized, updating'

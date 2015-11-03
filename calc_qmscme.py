@@ -1,6 +1,7 @@
 import ase.units as unit
 import numpy as np
 from math import pi
+from SCME.fCMtoAll import fCMtoAll
 
 k_c = 332.1 * unit.kcal / unit.mol
 
@@ -67,13 +68,13 @@ class calc_qmscme:
                 forces[j,:] += f        
 
         return energy, forces
-        # SPLIT UP FORCES AND RETURN THEM PROPERLY!!
 
 
     def calculate_qmnuclei_dipoles(self):
         qm = self.qm
         mm = self.mm
         mp = self.mp
+        qmidx = self.qmidx
         dipoles = self.dipoles
         qpoles = self.qpoles
         comp_char = self.comp_char
@@ -101,9 +102,43 @@ class calc_qmscme:
                         #    energy -= 1./3 * Q[j,k]*r[j]**2 / d**5 * ch
 
         energy /= 4.8
-    
-        # Forces
-        forces = np.zeros((len(self.mm),3))
+        """ forces """
+        forces = np.zeros((len(qm)+len(mm),3))
+        # Forces: MM dipoles on QM nuclei - CHECK UNITS
+        f_a = np.zeros((len(qm),3))
+        for a, atom in enumerate(qm):
+            pos = atom.position
+            ch = comp_char[a]
+        # Interact with all SCME:
+            for i in range(nMM):
+                cm = mm[i*mp:(i+1)*mp].get_center_of_mass()
+                r = (cm - pos)
+                d = np.linalg.norm(r)
+                r_u = r/d
+                mUr = dipoles[i].dot(r)
+                f_a[a,:] += ch * (3 * (mUr / d**4)  - dipoles[i] / d**3) * r_u
+                
+        # Forces: QM nuclei on MM dipoles    
+        f_iCM = np.zeros((len(mm)/mp,3))
+        for i in range(0,len(mm),mp):
+            cm = mm[i:i+3].get_center_of_mass()
+            dip = dipoles[i/mp]
+            for a, atom in enumerate(qm):
+                ch = comp_char[a]
+                pos = atom.position
+                r = (pos - cm)  
+                d = np.linalg.norm(r)
+                r_u = r/d
+                mUr = dip.dot(r)
+                f_iCM[i/mp,:] += ch *(dip/d**3 - 3*mUr/d**4) * r_u
+        
+        # Torque mu x Efield
+        eT = mm.calc.eT
+        tau_cm = np.cross(dipoles,eT) 
+        f_i = fCMtoAll(f_iCM=f_iCM, tau_cm=tau_cm,atoms=mm).distribute()
+
+        forces[:qmidx,:] += f_a
+        forces[qmidx:,:] += f_i
         return energy, forces
 
     def update(self, atoms):
@@ -122,7 +157,12 @@ class calc_qmscme:
         self.energy = 0
         self.forces = np.zeros((len(self.mm)+len(self.qm),3))
         e_lj, f_lj = self.calculate_LJ()
+        print 'LJ FORCES:'
+        print f_lj
+        
         e_zdip, f_zdip = self.calculate_qmnuclei_dipoles()
+        print 'Z-dip FORCES:'
+        print f_zdip
 
         self.energy += e_lj 
         self.energy += e_zdip

@@ -100,6 +100,12 @@ class CALC_SCME:
 
         testin = testin.reshape(3,3,nummols,order='F')
         ff,epot,et,qpole = scme.main(scme_coords,cell.diagonal(),eF,defield)
+        
+        # CONVERT UNITS HERE! 1D = 0.20819434 e*Ang
+        # SCME forces: Debye^2/Ang^3 ... which explains
+        # convFactor = 14.39975841d0 / 4.803206799d0**2
+        # and Elvars 1/4.8 = 0.208 ish ...
+
         #f = np.reshape(ff,[numatoms,3],order='F')
         f = np.reshape(ff,[numatoms,3])
         #testout = testout.reshape(nummols,3,3,order='F')

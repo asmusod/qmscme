@@ -135,6 +135,8 @@ class ase_qmscme:
         self.mm_energy += mm.get_potential_energy()
         self.mm_forces += mm.get_forces()
 
+        # self.mm_eF = calc.mm.eF # get mm eF for torque for FZqm-on-dip
+
         self.mm_dipoles = calc_mm.get_dipoles()
 
     def calculate_qm(self):
@@ -225,10 +227,10 @@ class ase_qmscme:
                 for k in range(3):
                     val = 3 * qr * (ps[k] - CM[k]) / d**5 
                     deF[:,k,i] -= val
-                deF[:,:,i] += 1./3 * np.diag(charges[:3] / d**3)
+                deF[:,:,i] += 1./3 * np.diag(charges[:3] / d**3) # this is probably wrong
 
         scme = atoms[qmidx:]
-        from SCME.CALC_SCME import CALC_SCME
+        from SCME.CALC_SCME2 import CALC_SCME
         calc_scme = CALC_SCME(scme, eF, deF)
         scme.set_calculator(calc_scme) 
         scme.get_potential_energy() #now calc has diples
