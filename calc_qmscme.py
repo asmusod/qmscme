@@ -111,27 +111,33 @@ class calc_qmscme:
             ch = comp_char[a]
         # Interact with all SCME:
             for i in range(nMM):
-                cm = mm[i*mp:(i+1)*mp].get_center_of_mass()
-                r = (cm - pos)
-                d = np.linalg.norm(r)
-                r_u = r/d
-                mUr = dipoles[i].dot(r)
-                f_a[a,:] += ch * (3 * (mUr / d**4)  - dipoles[i] / d**3) * r_u
-                
+                mu_i = dipoles[i]
+                cm_i = mm[i*mp:(i+1)*mp].get_center_of_mass()
+                R = (cm - pos)
+                d = np.linalg.norm(R)
+                Ru = R/d # CHECK SIGN OF f_a !!
+                f_a[a,:] +=  ch/d**3 * (3 * np.dot(mu_i,Ru)*Ru - mu_i) 
+                #f_a[a,:] += ch * (3 * (mUr / d**4)  - dipoles[i] / d**3) * r_u
+
+        print 'f_a (dipoles on qm nuc):'
+        print  f_a      
         # Forces: QM nuclei on MM dipoles    
         f_iCM = np.zeros((len(mm)/mp,3))
         for i in range(0,len(mm),mp):
             cm = mm[i:i+3].get_center_of_mass()
-            dip = dipoles[i/mp]
+            mu_i = dipoles[i/mp]
             for a, atom in enumerate(qm):
                 ch = comp_char[a]
                 pos = atom.position
-                r = (pos - cm)  
-                d = np.linalg.norm(r)
-                r_u = r/d
-                mUr = dip.dot(r)
-                f_iCM[i/mp,:] += ch *(dip/d**3 - 3*mUr/d**4) * r_u
-        
+                R = (cm - pos)  
+                d = np.linalg.norm(R)
+                Ru = R/d # CHECK SIGN OF FORCES
+                f_iCM[i/mp,:] -= ch/d**3 * (3 * np.dot(mu_i,Ru)*Ru - mu_i)
+
+                #f_iCM[i/mp,:] += ch *(dip/d**3 - 3*mUr/d**4) * r_u
+       
+        print 'f_ICM:'
+        print f_iCM 
         # Torque mu x Efield
         eT = mm.calc.eT
         tau_cm = np.cross(dipoles,eT) 
@@ -157,10 +163,14 @@ class calc_qmscme:
         self.energy = 0
         self.forces = np.zeros((len(self.mm)+len(self.qm),3))
         e_lj, f_lj = self.calculate_LJ()
+        print 'LJ ENERGY:'
+        print e_lj
         print 'LJ FORCES:'
         print f_lj
         
         e_zdip, f_zdip = self.calculate_qmnuclei_dipoles()
+        print 'Z-dip ENERGY:'
+        print e_zdip
         print 'Z-dip FORCES:'
         print f_zdip
 
