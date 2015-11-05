@@ -89,7 +89,7 @@ class calc_qmscme:
             # Interact with all SCME:
             for i in range(nMM):
                 cm = mm[i*mp:(i+1)*mp].get_center_of_mass()
-                r  = (cm - pos) """ UNIT PROBLEM? """
+                r  = (cm - pos)  
                 d  = np.sqrt(((cm - pos)**2).sum())
                 mUr = dipoles[i].dot(r)
                 #Q   = qpoles[:,:,i] no qpoles for now

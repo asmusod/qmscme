@@ -45,7 +45,7 @@ Esingle = monomer.get_potential_energy()
 print Esingle
 
 if rank == MASTER:
-    f = open(path+'add_gpaw-scme_dimerbinding.ene','w')
+    f = open(path+'singleproc_add_gpaw-scme_dimerbinding.ene','a')
     f.write('Single H2O Energy : %24s\n' %Esingle)
     print('Single H2O Energy : %24s\n' %Esingle)
     f.write('%24s%24s%24s\n' % ('Dimer Dist','E_dimer','E_binding'))
@@ -72,7 +72,7 @@ for step in range(0,20,1):
         calc_mm = CALC_SCME(full_sys[qmidx:])
         full_sys.set_cell([200,200,200])
         calc_qm = GPAW(h=0.20,mode='lcao',xc='PBE',
-                       basis={None:'dzp'},txt=path+'dimer_%2.4f.txt'%dist)
+                       basis={None:'dzp'},txt=path+'singleproc_dimer_%2.4f.txt'%dist)
         full_sys.set_calculator(ase_qmscme(full_sys, qmidx=3,calc_qm=calc_qm,
                           calc_mm=calc_mm,qm_cell=qm_cell,
                           LJ_qm=LJ_qm.T, LJ_mm=LJ_mm.T, qm_fixed = True))
@@ -85,33 +85,6 @@ for step in range(0,20,1):
             f.write('%24s%24s%24s\n' %(dist,Epot,Epot-Esingle))
             print('%24s%24s%24s\n' %(dist,Epot,Epot-Esingle))
 
-for step in range(0,5,1): 
-    for mol1 in range(3):
-        dimer[mol1].x -= 0.15*2
-    for mol2 in range(3,6):
-        dimer[mol2].x += 0.15*2
-    if step > -1: # if you accidentally break the script before done
-        dimer.center(vacuum=5.0)
-        qm_cell = dimer.get_cell()
-        dist = np.linalg.norm(dimer[0].position - dimer[3].position)
-        extra = dimer[0:3].copy()
-        extra.translate([100,0,0])
-        full_sys = dimer + extra
-        calc_mm = CALC_SCME(full_sys[qmidx:])
-        full_sys.set_cell([200,200,200])
-        calc_qm = GPAW(h=0.20,mode='lcao',xc='PBE',
-                       basis={None:'dzp'},txt=path+'dimer_%2.4f.txt'%dist)
-        full_sys.set_calculator(ase_qmscme(full_sys, qmidx=3,calc_qm=calc_qm,
-                          calc_mm=calc_mm,qm_cell=qm_cell,
-                          LJ_qm=LJ_qm.T, LJ_mm=LJ_mm.T, qm_fixed = True))
-        #try:
-        Epot = full_sys.get_potential_energy()
-        print 'Step: %5.2f, dist: %5.2f, Epot: %5.2f'%(step, dist,Epot)
-        #except:
-        #    Epot = float('Nan')
-        if rank == MASTER:
-            f.write('%24s%24s%24s\n' %(dist,Epot,Epot-Esingle))
-            print('%24s%24s%24s\n' %(dist,Epot,Epot-Esingle))
 
 
 

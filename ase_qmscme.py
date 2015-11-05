@@ -209,12 +209,14 @@ class ase_qmscme:
 
         # Charges for initial POOR field
         charges = np.zeros(len(atoms))
-        charges[:qmidx] += 1.0
-        charges[0]   *= -1.87
+        #charges[:qmidx] += 1.0
+        #charges[0]   *= -1.87
+        charges[:qmidx] += 0.42
+        charges[0]   *= -2.
         #                   eV->D     e_c
         #charges *= 1.275 * 4.80**2 / 14.4 # WHY?
 
-        # New charges
+        # New chages
         #ncharges = np.zeros(np.shape(charges))
         #ncharges += 0.42
         #ncharges[::3] *= -2.

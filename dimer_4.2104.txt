@@ -5,10 +5,10 @@
  |__ |  _|___|_____|  0.10.0.11364M
  |___|_|             
 
-User:  asod@n-62-13-25
-Date:  Thu Nov  5 14:40:49 2015
+User:  asod@n-62-24-2
+Date:  Thu Nov  5 16:41:49 2015
 Arch:  x86_64
-Pid:   6622
+Pid:   20918
 Dir:   /zhome/c7/a/69784/SCME2015_Nov/gpaw_scme/build/lib.linux-x86_64-2.7/gpaw
 ase:   /zhome/c7/a/69784/JJ_qmmm/ase_JJqmmm/ase (version 3.10.0)
 numpy: /appl/python/2.7.3/lib/python2.7/site-packages/numpy (version 1.6.2)
@@ -18,7 +18,7 @@ cores: 32
 
 Memory estimate
 ---------------
-Process memory now: 172.84 MiB
+Process memory now: 171.55 MiB
 Calculator  3.67 MiB
     Density  1.68 MiB
         Arrays  1.35 MiB
@@ -159,98 +159,98 @@ Bands to Converge:                      Occupied States Only
 Number of Valence Electrons:            8
                      log10-error:    Total        Iterations:
            Time      WFS    Density  Energy       Fermi  Poisson
-iter:   1  14:40:52                    -8.403883  0      25     
-iter:   2  14:40:53         -0.57      -6.350256  0      13     
-iter:   3  14:40:53         -0.82      -5.745838  0      14     
-iter:   4  14:40:54         -1.30      -5.684230  0      11     
-iter:   5  14:40:55         -1.77      -5.676070  0      9      
-iter:   6  14:40:55         -2.68      -5.676159  0      4      
-iter:   7  14:40:56         -2.81      -5.676139  0      6      
-iter:   8  14:40:56         -3.76      -5.676192  0      2      
-iter:   9  14:40:57         -3.93      -5.676135  0      3      
-iter:  10  14:40:57         -4.45      -5.676008  0      1      
+iter:   1  16:41:51                    -8.359150  0      25     
+iter:   2  16:41:51         -0.57      -6.304615  0      13     
+iter:   3  16:41:51         -0.82      -5.699851  0      14     
+iter:   4  16:41:52         -1.30      -5.638231  0      11     
+iter:   5  16:41:52         -1.77      -5.630063  0      9      
+iter:   6  16:41:52         -2.68      -5.630152  0      4      
+iter:   7  16:41:52         -2.81      -5.630132  0      6      
+iter:   8  16:41:53         -3.76      -5.630186  0      2      
+iter:   9  16:41:53         -3.93      -5.630128  0      3      
+iter:  10  16:41:53         -4.45      -5.630001  0      1      
 ------------------------------------
 Converged After 10 Iterations.
 
 Energy Contributions Relative to Reference Atoms:(reference = -2065.833357)
 -------------------------
-Kinetic:        -29.371638
-Potential:      +34.646149
-External:        -0.028648
-XC:             -10.644665
+Kinetic:        -29.372834
+Potential:      +34.648160
+External:        +0.017360
+XC:             -10.645481
 Entropy (-ST):   -0.000000
-Local:           -0.277207
+Local:           -0.277205
 -------------------------
-Free Energy:     -5.676008
-Zero Kelvin:     -5.676008
+Free Energy:     -5.630001
+Zero Kelvin:     -5.630001
 
-Fermi Level: -2.59347
+Fermi Level: -2.58631
  Band   Eigenvalues  Occupancy
-   0    -26.07732     2.00000
-   1    -12.72549     2.00000
-   2     -8.74246     2.00000
-   3     -6.21051     2.00000
-   4      1.02358     0.00000
-   5      3.29954     0.00000
+   0    -26.07007     2.00000
+   1    -12.71882     2.00000
+   2     -8.73607     2.00000
+   3     -6.20447     2.00000
+   4      1.03185     0.00000
+   5      3.30843     0.00000
 
 
-Dipole Moment: [  1.92054626e-01   2.95326915e-01  -1.85552368e-13]
+Dipole Moment: [  1.92368664e-01   2.95407534e-01  -2.16719496e-13]
 
 Forces in eV/Ang:
-  0 O    -0.87814   -1.81806   -0.00000
-  1 H    -0.18213    1.47716   -0.00000
-  2 H     1.04700    0.41069   -0.00000
-Memory usage: 180.97 MB
+  0 O    -0.89450   -1.82608   -0.00000
+  1 H    -0.18409    1.47584   -0.00000
+  2 H     1.04044    0.40844   -0.00000
+Memory usage: 179.67 MB
 ==========================================================
 Timing:                             incl.     excl.
 ==========================================================
-Force calculation:                  0.062     0.026   0.3% |
- LCAO forces:                       0.037     0.000   0.0% |
+Force calculation:                  0.036     0.014   0.3% |
+ LCAO forces:                       0.022     0.000   0.0% |
   Atomic Hamiltonian force:         0.000     0.000   0.0% |
   Initial:                          0.000     0.000   0.0% |
    Get density matrix:              0.000     0.000   0.0% |
   Paw correction:                   0.000     0.000   0.0% |
   Potential:                        0.000     0.000   0.0% |
-  TCI derivative:                   0.036     0.036   0.4% |
+  TCI derivative:                   0.022     0.022   0.5% |
   Wait for sum:                     0.000     0.000   0.0% |
-Initialization:                     2.814     0.492   5.4% |-|
+Initialization:                     1.799     0.901  19.8% |-------|
  Basic WFS set positions:           0.000     0.000   0.0% |
- Basis functions set positions:     0.006     0.006   0.1% |
- Hamiltonian:                       1.937     0.158   1.7% ||
+ Basis functions set positions:     0.009     0.009   0.2% |
+ Hamiltonian:                       0.605     0.121   2.7% ||
   Atomic:                           0.000     0.000   0.0% |
-  Communicate energies:             0.188     0.188   2.1% ||
-  Hartree integrate/restrict:       0.014     0.014   0.2% |
+  Communicate energies:             0.083     0.083   1.8% ||
+  Hartree integrate/restrict:       0.002     0.002   0.1% |
   Initialize Hamiltonian:           0.002     0.002   0.0% |
-  Poisson:                          1.337     1.337  14.6% |-----|
-  XC 3D grid:                       0.237     0.237   2.6% ||
+  Poisson:                          0.325     0.325   7.1% |--|
+  XC 3D grid:                       0.071     0.071   1.6% ||
   vbar:                             0.001     0.001   0.0% |
- TCI: Calculate S, T, P:            0.002     0.002   0.0% |
- TCI: Evaluate splines:             0.376     0.376   4.1% |-|
-SCF-cycle:                          5.685     0.003   0.0% |
- Density:                           0.075     0.000   0.0% |
+ TCI: Calculate S, T, P:            0.001     0.001   0.0% |
+ TCI: Evaluate splines:             0.283     0.283   6.2% |-|
+SCF-cycle:                          2.157     0.002   0.1% |
+ Density:                           0.041     0.000   0.0% |
   Atomic density matrices:          0.000     0.000   0.0% |
-  Mix:                              0.038     0.038   0.4% |
-  Multipole moments:                0.034     0.034   0.4% |
-  Normalize:                        0.002     0.002   0.0% |
+  Mix:                              0.023     0.023   0.5% |
+  Multipole moments:                0.016     0.016   0.4% |
+  Normalize:                        0.001     0.001   0.0% |
   Pseudo density:                   0.001     0.001   0.0% |
    Calculate density matrix:        0.000     0.000   0.0% |
    Construct density:               0.000     0.000   0.0% |
    Symmetrize density:              0.000     0.000   0.0% |
- Hamiltonian:                       5.553     0.006   0.1% |
+ Hamiltonian:                       2.089     0.005   0.1% |
   Atomic:                           0.000     0.000   0.0% |
-  Communicate energies:             1.583     1.583  17.3% |------|
-  Hartree integrate/restrict:       0.042     0.042   0.5% |
-  Poisson:                          2.846     2.846  31.1% |-----------|
-  XC 3D grid:                       1.072     1.072  11.7% |----|
-  vbar:                             0.004     0.004   0.0% |
- LCAO eigensolver:                  0.055     0.001   0.0% |
+  Communicate energies:             0.747     0.747  16.4% |------|
+  Hartree integrate/restrict:       0.020     0.020   0.4% |
+  Poisson:                          0.821     0.821  18.0% |------|
+  XC 3D grid:                       0.492     0.492  10.8% |---|
+  vbar:                             0.003     0.003   0.1% |
+ LCAO eigensolver:                  0.024     0.001   0.0% |
   Atomic Hamiltonian:               0.000     0.000   0.0% |
   Calculate projections:            0.000     0.000   0.0% |
-  Distribute overlap matrix:        0.050     0.050   0.5% |
-  Orbital Layouts:                  0.004     0.004   0.0% |
+  Distribute overlap matrix:        0.020     0.020   0.4% |
+  Orbital Layouts:                  0.004     0.004   0.1% |
   Potential matrix:                 0.000     0.000   0.0% |
-Other:                              0.582     0.582   6.4% |--|
+Other:                              0.566     0.566  12.4% |----|
 ==========================================================
-Total:                                        9.143 100.0%
+Total:                                        4.558 100.0%
 ==========================================================
-date: Thu Nov  5 14:40:58 2015
+date: Thu Nov  5 16:41:54 2015
