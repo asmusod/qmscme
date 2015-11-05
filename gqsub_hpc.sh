@@ -26,14 +26,14 @@ export PATH=/zhome/c7/a/69784/SCME2015_Nov/QMSCME:$PATH
 export PYTHONPATH=/zhome/c7/a/69784/SCME2015_Nov/QMSCME:$PYTHONPATH
 
 export PBS_O_TMPDIR=/SCRATCH/\$PBS_O_LOGNAME/\$PBS_JOBID
-mkdir -p \$PBS_O_TMPDIR
-cd \$PBS_O_TMPDIR
+#mkdir -p \$PBS_O_TMPDIR
+#cd \$PBS_O_TMPDIR
  
-# Copy files in - ALL THE FILES TO BE COPIED SHOULD HAVE SAME NAME AS .py file
-cp \$PBS_O_WORKDIR/${FIL}.* .
+cd \$PBS_O_WORKDIR
  
 # Run GPAW
 mpirun -np 32 gpaw-python $IN
+#mpirun -np 32 python $IN
 
 # Copy files back
 # NO because this overwrites the .py files to 0 kB if hard limit quota

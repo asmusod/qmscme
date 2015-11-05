@@ -1,0 +1,257 @@
+
+  ___ ___ ___ _ _ _  
+ |   |   |_  | | | | 
+ | | | | | . | | | | 
+ |__ |  _|___|_____|  0.10.0.11364M
+ |___|_|             
+
+User:  asod@n-62-14-10
+Date:  Wed Nov  4 16:33:17 2015
+Arch:  x86_64
+Pid:   21726
+Dir:   /zhome/c7/a/69784/SCME2015_Nov/gpaw_scme/build/lib.linux-x86_64-2.7/gpaw
+ase:   /zhome/c7/a/69784/JJ_qmmm/ase_JJqmmm/ase (version 3.10.0)
+numpy: /appl/python/2.7.3/lib/python2.7/site-packages/numpy (version 1.6.2)
+scipy: /appl/python/2.7.3/lib/python2.7/site-packages/scipy (version 0.11.0)
+units: Angstrom and eV
+cores: 1
+
+Memory estimate
+---------------
+Process memory now: 994.41 MiB
+Calculator  105.25 MiB
+    Density  48.65 MiB
+        Arrays  38.72 MiB
+        Localized functions  1.20 MiB
+        Mixer  8.72 MiB
+    Hamiltonian  54.40 MiB
+        Arrays  25.33 MiB
+        XC  0.00 MiB
+        Poisson  28.98 MiB
+        vbar  0.09 MiB
+    Wavefunctions  2.21 MiB
+        C [qnM]  0.00 MiB
+        S, T [2 x qmm]  0.01 MiB
+        P [aqMi]  0.00 MiB
+        TCI  0.00 MiB
+        BasisFunctions  2.20 MiB
+        Eigensolver  0.00 MiB
+
+Positions:
+  0 O     5.3140    5.5094    5.7586
+  1 H     5.0000    6.4135    5.7586
+  2 H     6.2745    5.5902    5.7586
+
+        .------------------------------.  
+       /|                              |  
+      / |                              |  
+     /  |                              |  
+    /   |                              |  
+   /    |                              |  
+  /     |                              |  
+ *      |                              |  
+ |      |                              |  
+ |      |                              |  
+ |      |        H                     |  
+ |      |        O  H                  |  
+ |      |                              |  
+ |      |                              |  
+ |      .------------------------------.  
+ |     /                              /   
+ |    /                              /    
+ |   /                              /     
+ |  /                              /      
+ | /                              /       
+ |/                              /        
+ *------------------------------*         
+
+Unit Cell:
+           Periodic     X           Y           Z      Points  Spacing
+  --------------------------------------------------------------------
+  1. axis:    no    12.715516    0.000000    0.000000    64     0.1987
+  2. axis:    no     0.000000   11.413485    0.000000    56     0.2038
+  3. axis:    no     0.000000    0.000000   11.517122    56     0.2057
+
+O-setup:
+  name   : Oxygen
+  id     : 32ecd46bf208036f09c70b0ec9a88b78
+  Z      : 8
+  valence: 6
+  core   : 2
+  charge : 0.0
+  file   : /zhome/c7/a/69784/gpaw-setups/O.PBE.gz
+  cutoffs: 0.67(comp), 1.17(filt), 0.83(core), lmax=2
+  valence states:
+            energy   radius
+    2s(2)  -23.961   0.688
+    2p(4)   -9.029   0.598
+    *s       3.251   0.688
+    *p      18.182   0.598
+    *d       0.000   0.619
+
+LCAO basis set for O:
+  Name: dzp
+  Basis set was loaded from file /zhome/c7/a/69784/gpaw-setups/O.dzp.basis
+  Number of radial functions: 5
+  Number of spherical harmonics: 13
+    l=0, rc=4.3438 Bohr: 2s-sz confined orbital
+    l=1, rc=5.3906 Bohr: 2p-sz confined orbital
+    l=0, rc=2.2969 Bohr: 2s-dz split-valence wave
+    l=1, rc=2.9688 Bohr: 2p-dz split-valence wave
+    l=2, rc=5.3906 Bohr: d-type Gaussian polarization
+
+H-setup:
+  name   : Hydrogen
+  id     : d65de229564ff8ea4db303e23b6d1ecf
+  Z      : 1
+  valence: 1
+  core   : 0
+  charge : 0.0
+  file   : /zhome/c7/a/69784/gpaw-setups/H.PBE.gz
+  cutoffs: 0.48(comp), 0.85(filt), 0.53(core), lmax=2
+  valence states:
+            energy   radius
+    1s(1)   -6.494   0.476
+    *s      20.717   0.476
+    *p       0.000   0.476
+
+LCAO basis set for H:
+  Name: dzp
+  Basis set was loaded from file /zhome/c7/a/69784/gpaw-setups/H.dzp.basis
+  Number of radial functions: 3
+  Number of spherical harmonics: 5
+    l=0, rc=6.6406 Bohr: 1s-sz confined orbital
+    l=0, rc=3.6094 Bohr: 1s-dz split-valence wave
+    l=1, rc=6.6406 Bohr: p-type Gaussian polarization
+
+Using the PBE Exchange-Correlation Functional.
+Spin-Paired Calculation
+Total Charge:      0.000000
+Fermi Temperature: 0.000000
+Wave functions: LCAO
+Eigensolver:       lcao (direct)
+XC and Coulomb potentials evaluated on a 128*112*112 grid
+Interpolation: tri-quintic (5. degree polynomial)
+Poisson solver: Jacobi solver with 5 multi-grid levels
+Stencil: 6*3+1=19 point O(h^6) finite-difference Laplacian
+Reference Energy:  -2065.833357
+
+Total number of cores used: 1
+Diagonalizer layout: Serial LAPACK
+
+Symmetries present: 1
+1 k-point (Gamma)
+1 k-point in the Irreducible Part of the Brillouin Zone
+Mixer Type:                        Mixer
+Linear Mixing Parameter:           0.25
+Mixing with 3 Old Densities
+No Damping of Long Wave Oscillations
+
+Convergence Criteria:
+Total Energy Change:           0.0005 eV / electron
+Integral of Absolute Density Change:    0.0001 electrons
+Integral of Absolute Eigenstate Change: 4e-08 eV^2
+Number of Atoms: 3
+Number of Atomic Orbitals: 23
+Number of Bands in Calculation:         6
+Bands to Converge:                      Occupied States Only
+Number of Valence Electrons:            8
+                     log10-error:    Total        Iterations:
+           Time      WFS    Density  Energy       Fermi  Poisson
+iter:   1  16:33:40                    -8.624575  0      16     
+iter:   2  16:33:49         -0.57      -6.582878  0      9      
+iter:   3  16:33:59         -0.82      -5.983099  0      9      
+iter:   4  16:34:08         -1.31      -5.921685  0      9      
+iter:   5  16:34:17         -1.77      -5.913661  0      7      
+iter:   6  16:34:23         -2.68      -5.913676  0      4      
+iter:   7  16:34:30         -2.81      -5.913645  0      6      
+iter:   8  16:34:35         -3.76      -5.913683  0      2      
+iter:   9  16:34:41         -3.94      -5.913611  0      3      
+iter:  10  16:34:45         -4.64      -5.913458  0      1      
+------------------------------------
+Converged After 10 Iterations.
+
+Energy Contributions Relative to Reference Atoms:(reference = -2065.833357)
+-------------------------
+Kinetic:        -29.346207
+Potential:      +34.611231
+External:        -0.274148
+XC:             -10.635344
+Entropy (-ST):   -0.000000
+Local:           -0.268989
+-------------------------
+Free Energy:     -5.913458
+Zero Kelvin:     -5.913458
+
+Fermi Level: -2.63073
+ Band   Eigenvalues  Occupancy
+   0    -26.12006     2.00000
+   1    -12.77110     2.00000
+   2     -8.78095     2.00000
+   3     -6.24251     2.00000
+   4      0.98105     0.00000
+   5      3.25577     0.00000
+
+
+Dipole Moment: [  1.87108199e-01   2.95495138e-01  -1.28248606e-12]
+
+Forces in eV/Ang:
+  0 O    -0.66631   -1.81189   -0.00000
+  1 H    -0.17001    1.48302   -0.00000
+  2 H     1.18879    0.39719   -0.00000
+Memory usage: 1.38 GB
+==========================================================
+Timing:                             incl.     excl.
+==========================================================
+Force calculation:                  0.190     0.027   0.0% |
+ LCAO forces:                       0.163     0.001   0.0% |
+  Atomic Hamiltonian force:         0.001     0.001   0.0% |
+  Initial:                          0.000     0.000   0.0% |
+   Get density matrix:              0.000     0.000   0.0% |
+  Paw correction:                   0.001     0.001   0.0% |
+  Potential:                        0.120     0.120   0.0% |
+  TCI derivative:                   0.041     0.041   0.0% |
+  Wait for sum:                     0.000     0.000   0.0% |
+Initialization:                    22.374     0.344   0.0% |
+ Basic WFS set positions:           0.000     0.000   0.0% |
+ Basis functions set positions:     0.019     0.019   0.0% |
+ Hamiltonian:                      21.408     7.322   0.6% |
+  Atomic:                           0.220     0.001   0.0% |
+   XC Correction:                   0.219     0.219   0.0% |
+  Communicate energies:             0.000     0.000   0.0% |
+  Hartree integrate/restrict:       0.053     0.053   0.0% |
+  Initialize Hamiltonian:           0.006     0.006   0.0% |
+  Poisson:                         10.662    10.662   0.9% |
+  XC 3D grid:                       3.132     3.132   0.3% |
+  vbar:                             0.012     0.012   0.0% |
+ TCI: Calculate S, T, P:            0.018     0.018   0.0% |
+ TCI: Evaluate splines:             0.585     0.585   0.0% |
+SCF-cycle:                         65.387     0.004   0.0% |
+ Density:                           0.800     0.000   0.0% |
+  Atomic density matrices:          0.003     0.003   0.0% |
+  Mix:                              0.621     0.621   0.1% |
+  Multipole moments:                0.001     0.001   0.0% |
+  Normalize:                        0.008     0.008   0.0% |
+  Pseudo density:                   0.167     0.012   0.0% |
+   Calculate density matrix:        0.001     0.001   0.0% |
+   Construct density:               0.154     0.154   0.0% |
+   Symmetrize density:              0.000     0.000   0.0% |
+ Hamiltonian:                      64.419     0.168   0.0% |
+  Atomic:                           1.956     0.006   0.0% |
+   XC Correction:                   1.949     1.949   0.2% |
+  Communicate energies:             0.000     0.000   0.0% |
+  Hartree integrate/restrict:       0.426     0.426   0.0% |
+  Poisson:                         33.590    33.590   2.8% ||
+  XC 3D grid:                      28.170    28.170   2.3% ||
+  vbar:                             0.109     0.109   0.0% |
+ LCAO eigensolver:                  0.163     0.001   0.0% |
+  Atomic Hamiltonian:               0.001     0.001   0.0% |
+  Calculate projections:            0.000     0.000   0.0% |
+  Distribute overlap matrix:        0.000     0.000   0.0% |
+  Orbital Layouts:                  0.007     0.007   0.0% |
+  Potential matrix:                 0.154     0.154   0.0% |
+Other:                           1119.047  1119.047  92.7% |------------------------------------|
+==========================================================
+Total:                                     1206.997 100.0%
+==========================================================
+date: Wed Nov  4 16:53:24 2015

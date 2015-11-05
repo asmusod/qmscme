@@ -57,12 +57,12 @@ for mol1 in range(3):
 
 dimer.center(vacuum=5.0)
 
-for step in range(0,40,1): 
+for step in range(0,20,1): 
     for mol1 in range(3):
-        dimer[mol1].x -= 0.05
+        dimer[mol1].x -= 0.05*2
     for mol2 in range(3,6):
-        dimer[mol2].x += 0.05
-    if step > 0: # if you accidentally break the script before done
+        dimer[mol2].x += 0.05*2
+    if step > -1: # if you accidentally break the script before done
         dimer.center(vacuum=5.0)
         qm_cell = dimer.get_cell()
         dist = np.linalg.norm(dimer[0].position - dimer[3].position)

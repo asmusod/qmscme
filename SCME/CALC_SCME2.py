@@ -99,6 +99,8 @@ class CALC_SCME:
         #eQM = np.zeros([3,nummols])
         testin = np.zeros([3,3,nummols])
         testin = testin.reshape(3,3,nummols,order='F')
+        eF = eF #/ unit.Debye
+        deF = deF #/ unit.Debye 
         ff,epot,eT,dipole,qpole = scme.main(scme_coords,cell.diagonal(),eF,deF)
         # also get eT out: total field.
         #f = np.reshape(ff,[numatoms,3],order='F')
@@ -106,7 +108,9 @@ class CALC_SCME:
         #testout = testout.reshape(nummols,3,3,order='F')
         # Convert force array back to ase coordinates
         aseforces = self.f_scme_to_ase(f)
+        dipole = dipole*unit.Debye # go back to ase units
         dipole = dipole.transpose() # F-> P     
+        eT = -1 * eT * unit.Debye
         eT = eT.transpose() # F-> P     
 
         # update calc and atoms

@@ -3,6 +3,7 @@ import ase.units as unit
 from ase.visualize import view
 from gpaw.mm_potentials import DipoleQuad
 from calc_qmscme import calc_qmscme
+from gpaw.mpi import MASTER,rank
 class ase_qmscme:
     """ GPAW<->SCME additive interfacer version 0.0001 
         A.O. Dohn,  E. O. Jonsson, November 2015 """
@@ -10,7 +11,8 @@ class ase_qmscme:
                  calc_qm=None,calc_mm=None,
                  qm_cell=None,rcut=None,qm_fixed=False,
                  mm_pbc = True, LJ_qm=None, LJ_mm=None):
-        print '##############################  IN __init__()'
+        if rank == MASTER:
+            print '##############################  IN __init__()'
         self.atoms = atoms
         self.qmidx = qmidx
         self.energy = None
@@ -35,7 +37,8 @@ class ase_qmscme:
         self.initialized = False # check if initial dipoles need to be made 
 
     def get_qm_subsystem(self):
-        print '##############################  IN get_qm_subsystem()'
+        if rank == MASTER:
+            print '##############################  IN get_qm_subsystem()'
         """ All atoms before qmidx are considered the qm subsystem.
             Need to create a minimal cell around the qm subsystem and
             keep track of any displacement to fit it neatly in to the
@@ -81,10 +84,11 @@ class ase_qmscme:
         # Hold on to the shift from origin and qm_subsystem:
         self.origin = origin # (O)
         self.qm = qm_subsystem
-        view(qm_subsystem)
+        #view(qm_subsystem)
 
     def get_mm_subsystem(self):
-        print '##############################  IN get_mm_subsystem()'
+        if rank == MASTER:
+            print '##############################  IN get_mm_subsystem()'
         """ All atoms after qmidx are considered as mm subsystem.
             Need to go through get_qm_subsystem to get the origin. """
         if (self.qm is None):
@@ -118,10 +122,11 @@ class ase_qmscme:
         mm_subsystem.set_positions(pos)
         mm_subsystem.set_pbc((1,1,1))
         self.mm = mm_subsystem
-        view(mm_subsystem)
+        #view(mm_subsystem)
 
     def calculate_mm(self):
-        print '##############################  IN calculate_mm()'
+        if rank == MASTER:
+            print '##############################  IN calculate_mm()'
         mm = self.mm
         calc_mm = self.calc_mm
         calc_mm.eF = self.eF
@@ -137,10 +142,11 @@ class ase_qmscme:
 
         # self.mm_eF = calc.mm.eF # get mm eF for torque for FZqm-on-dip
 
-        self.mm_dipoles = calc_mm.get_dipoles()
+        self.dipoles = calc_mm.get_dipoles()
 
     def calculate_qm(self):
-        print '##############################  IN calculate_qm()'
+        if rank == MASTER:
+            print '##############################  IN calculate_qm()'
         calc_qm = self.calc_qm
         qm = self.qm
         mm = self.mm
@@ -151,9 +157,12 @@ class ase_qmscme:
 
         dipoles = self.dipoles
         qpoles = self.qpoles
-        
+        if rank == MASTER:
+            print 'DIPOLES IN CALC_QM:' 
+            print dipoles
+            print 'QPOLES IN CALC_QM:' 
+            print qpoles
         calc_qm.set(external=DipoleQuad(mm,dipoles,qpoles,3))
-        #calc_qm.set(external=PointCharges(mm))
         qm.set_calculator(calc_qm)
 
         self.qm_energy += qm.get_potential_energy()
@@ -166,7 +175,8 @@ class ase_qmscme:
         #self.mm_forces = calc_qm.get_point_charge_forces(mm_subsystem = mm)
 
     def calculate_qmmm(self, atoms):
-        print '##############################  IN calculate_qmmm()'
+        if rank == MASTER:
+            print '##############################  IN calculate_qmmm()'
         if self.comp_char is None:
             self.calculate_qm()
         if self.dipoles is None:
@@ -190,7 +200,8 @@ class ase_qmscme:
             dipoles=dipoles, qpoles=qpoles,LJ_mm=LJ_mm,LJ_qm=LJ_qm).get_energy_and_forces(atoms)
 
     def initialize(self): # induce poor initial dipoles to take first step
-        print '##############################  IN initialize()'
+        if rank == MASTER:
+            print '##############################  IN initialize()'
         # temporary.. goes in DipoleQuad..
         mp = self.mp
         qmidx = self.qmidx
@@ -200,13 +211,14 @@ class ase_qmscme:
         charges = np.zeros(len(atoms))
         charges[:qmidx] += 1.0
         charges[0]   *= -1.87
-        charges *= 1.275 * 4.80**2 / 14.4 # WHY?
+        #                   eV->D     e_c
+        #charges *= 1.275 * 4.80**2 / 14.4 # WHY?
 
         # New charges
-        ncharges = np.zeros(np.shape(charges))
-        ncharges += 0.42
-        ncharges[::3] *= -2.
-        atoms.set_initial_charges(ncharges)
+        #ncharges = np.zeros(np.shape(charges))
+        #ncharges += 0.42
+        #ncharges[::3] *= -2.
+        #atoms.set_initial_charges(ncharges)
 
         # Make initial 'POOR' external field, and gradient
         nMM = (len(atoms) - qmidx) / mp
@@ -243,7 +255,8 @@ class ase_qmscme:
         self.initialized = True
 
     def get_energy_and_forces(self, atoms):
-        print '##############################  IN get_energy_and_forces()'
+        if rank == MASTER:
+            print '##############################  IN get_energy_and_forces()'
         self.positions = atoms.get_positions()
         self.get_qm_subsystem()
         self.get_mm_subsystem()
@@ -257,41 +270,47 @@ class ase_qmscme:
         self.energy = 0
         self.forces = np.zeros((len(self.mm)+len(self.qm),3))
         
-        view(self.qm + self.mm)
+        #view(self.qm + self.mm)
 
         self.calculate_mm()
         self.energy += self.mm_energy
         self.forces[qmidx:,:] += self.mm_forces
-        print 'MM ENERGY:'
-        print self.mm_energy
+        if rank == MASTER:
+            print 'MM ENERGY:'
+            print self.mm_energy
 
         self.calculate_qm()
         self.energy += self.qm_energy
-        print 'QM ENERGY:'
-        print self.qm_energy 
+        if rank == MASTER:
+            print 'QM ENERGY:'
+            print self.qm_energy 
         self.forces[:qmidx,:] += self.qm_forces
         self.forces[qmidx:,:] += self.mm_forces
 
         self.calculate_qmmm(atoms)
-        print 'TOTAL QMMM ENERGY'
-        print self.qmmm_energy
+        if rank == MASTER:
+            print 'TOTAL QMMM ENERGY'
+            print self.qmmm_energy
         self.energy += self.qmmm_energy
         self.forces += self.qmmm_forces
 
     def get_potential_energy(self, atoms):
-        print '##############################  IN get_potential_energy()'
+        if rank == MASTER:
+            print '##############################  IN get_potential_energy()'
         if self.calculation_required(atoms):
             self.get_energy_and_forces(atoms)
         return self.energy
 
     def get_forces(self, atoms):
-        print '##############################  IN get_forces()'
+        if rank == MASTER:
+            print '##############################  IN get_forces()'
         if self.calculation_required(atoms):
             self.get_energy_and_forces(atoms)
         return self.forces
 
     def calculation_required(self,atoms):
-        print '##############################  IN get_calculation_required()'
+        if rank == MASTER:
+            print '##############################  IN get_calculation_required()'
         """ FIX FIX FIX """
         return True 
 

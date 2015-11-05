@@ -6,9 +6,9 @@
  |___|_|             
 
 User:  asod@n-62-14-10
-Date:  Thu Nov  5 14:21:23 2015
+Date:  Thu Nov  5 15:18:45 2015
 Arch:  x86_64
-Pid:   913
+Pid:   29189
 Dir:   /zhome/c7/a/69784/SCME2015_Nov/gpaw_scme/build/lib.linux-x86_64-2.7/gpaw
 ase:   /zhome/c7/a/69784/JJ_qmmm/ase_JJqmmm/ase (version 3.10.0)
 numpy: /appl/python/2.7.3/lib/python2.7/site-packages/numpy (version 1.6.2)
@@ -18,75 +18,75 @@ cores: 1
 
 Memory estimate
 ---------------
-Process memory now: 69.32 MiB
-Calculator  111.65 MiB
-    Density  51.66 MiB
-        Arrays  41.16 MiB
-        Localized functions  1.22 MiB
-        Mixer  9.28 MiB
-    Hamiltonian  57.75 MiB
-        Arrays  26.93 MiB
+Process memory now: 213.48 MiB
+Calculator  98.69 MiB
+    Density  45.62 MiB
+        Arrays  36.28 MiB
+        Localized functions  1.17 MiB
+        Mixer  8.17 MiB
+    Hamiltonian  50.91 MiB
+        Arrays  23.73 MiB
         XC  0.00 MiB
-        Poisson  30.73 MiB
-        vbar  0.09 MiB
-    Wavefunctions  2.24 MiB
+        Poisson  27.09 MiB
+        vbar  0.08 MiB
+    Wavefunctions  2.15 MiB
         C [qnM]  0.00 MiB
         S, T [2 x qmm]  0.01 MiB
         P [aqMi]  0.00 MiB
         TCI  0.00 MiB
-        BasisFunctions  2.23 MiB
+        BasisFunctions  2.14 MiB
         Eigensolver  0.00 MiB
 
 Positions:
-  0 O     6.4841    5.1161    5.7586
-  1 H     6.1701    6.0202    5.7586
-  2 H     7.4446    5.1969    5.7586
+  0 O     5.3140    5.5094    5.7586
+  1 H     5.0000    6.4135    5.7586
+  2 H     6.2745    5.5902    5.7586
 
-        .--------------------------------.  
-       /|                                |  
-      / |                                |  
-     /  |                                |  
-    /   |                                |  
-   /    |                                |  
-  /     |                                |  
- *      |                                |  
- |      |                                |  
- |      |                                |  
- |      |           H                    |  
- |      |           O H                  |  
- |      |                                |  
- |      |                                |  
- |      .--------------------------------.  
- |     /                                /   
- |    /                                /    
- |   /                                /     
- |  /                                /      
- | /                                /       
- |/                                /        
- *--------------------------------*         
+        .-----------------------------.  
+       /|                             |  
+      / |                             |  
+     /  |                             |  
+    /   |                             |  
+   /    |                             |  
+  /     |                             |  
+ *      |                             |  
+ |      |                             |  
+ |      |                             |  
+ |      |        H                    |  
+ |      |        O  H                 |  
+ |      |                             |  
+ |      |                             |  
+ |      .-----------------------------.  
+ |     /                             /   
+ |    /                             /    
+ |   /                             /     
+ |  /                             /      
+ | /                             /       
+ |/                             /        
+ *-----------------------------*         
 
 Unit Cell:
            Periodic     X           Y           Z      Points  Spacing
   --------------------------------------------------------------------
-  1. axis:    no    13.614657    0.000000    0.000000    68     0.2002
-  2. axis:    no     0.000000   11.136244    0.000000    56     0.1989
+  1. axis:    no    12.215516    0.000000    0.000000    60     0.2036
+  2. axis:    no     0.000000   11.413485    0.000000    56     0.2038
   3. axis:    no     0.000000    0.000000   11.517122    56     0.2057
 
 O-setup:
   name   : Oxygen
-  id     : c499766cc8e7dcd71102fb2af544a49e
+  id     : 32ecd46bf208036f09c70b0ec9a88b78
   Z      : 8
   valence: 6
   core   : 2
   charge : 0.0
-  file   : /zhome/c7/a/69784/gpaw-setups/O.LDA
+  file   : /zhome/c7/a/69784/gpaw-setups/O.PBE.gz
   cutoffs: 0.67(comp), 1.17(filt), 0.83(core), lmax=2
   valence states:
             energy   radius
-    2s(2)  -23.752   0.688
-    2p(4)   -9.195   0.598
-    *s       3.459   0.688
-    *p      18.016   0.598
+    2s(2)  -23.961   0.688
+    2p(4)   -9.029   0.598
+    *s       3.251   0.688
+    *p      18.182   0.598
     *d       0.000   0.619
 
 LCAO basis set for O:
@@ -102,17 +102,17 @@ LCAO basis set for O:
 
 H-setup:
   name   : Hydrogen
-  id     : 8833f3c10b92b609d865665f2d5a865f
+  id     : d65de229564ff8ea4db303e23b6d1ecf
   Z      : 1
   valence: 1
   core   : 0
   charge : 0.0
-  file   : /zhome/c7/a/69784/gpaw-setups/H.LDA
+  file   : /zhome/c7/a/69784/gpaw-setups/H.PBE.gz
   cutoffs: 0.48(comp), 0.85(filt), 0.53(core), lmax=2
   valence states:
             energy   radius
-    1s(1)   -6.353   0.476
-    *s      20.858   0.476
+    1s(1)   -6.494   0.476
+    *s      20.717   0.476
     *p       0.000   0.476
 
 LCAO basis set for H:
@@ -124,17 +124,17 @@ LCAO basis set for H:
     l=0, rc=3.6094 Bohr: 1s-dz split-valence wave
     l=1, rc=6.6406 Bohr: p-type Gaussian polarization
 
-Using the LDA Exchange-Correlation Functional.
+Using the PBE Exchange-Correlation Functional.
 Spin-Paired Calculation
 Total Charge:      0.000000
 Fermi Temperature: 0.000000
 Wave functions: LCAO
 Eigensolver:       lcao (direct)
-XC and Coulomb potentials evaluated on a 136*112*112 grid
+XC and Coulomb potentials evaluated on a 120*112*112 grid
 Interpolation: tri-quintic (5. degree polynomial)
 Poisson solver: Jacobi solver with 4 multi-grid levels
 Stencil: 6*3+1=19 point O(h^6) finite-difference Laplacian
-Reference Energy:  -2052.166737
+Reference Energy:  -2065.833357
 
 Total number of cores used: 1
 Diagonalizer layout: Serial LAPACK
@@ -158,44 +158,44 @@ Bands to Converge:                      Occupied States Only
 Number of Valence Electrons:            8
                      log10-error:    Total        Iterations:
            Time      WFS    Density  Energy       Fermi  Poisson
-iter:   1  14:21:50                    -8.972232  0      25     
-iter:   2  14:22:01         -0.58      -6.940908  0      14     
-iter:   3  14:22:13         -0.83      -6.330748  0      15     
-iter:   4  14:22:22         -1.31      -6.258708  0      11     
-iter:   5  14:22:29         -1.79      -6.251310  0      8      
-iter:   6  14:22:33         -2.61      -6.251316  0      5      
-iter:   7  14:22:39         -2.74      -6.251341  0      6      
-iter:   8  14:22:42         -3.59      -6.251402  0      3      
-iter:   9  14:22:46         -3.79      -6.251411  0      3      
-iter:  10  14:22:48         -4.17      -6.251282  0      2      
+iter:   1  15:19:11                    -9.010732  0      23     
+iter:   2  15:19:24         -0.58      -6.993384  0      14     
+iter:   3  15:19:37         -0.82      -6.400879  0      14     
+iter:   4  15:19:49         -1.30      -6.339669  0      11     
+iter:   5  15:19:57         -1.78      -6.331947  0      8      
+iter:   6  15:20:03         -2.68      -6.332046  0      4      
+iter:   7  15:20:11         -2.80      -6.332031  0      6      
+iter:   8  15:20:15         -3.73      -6.332099  0      2      
+iter:   9  15:20:21         -3.91      -6.332023  0      3      
+iter:  10  15:20:26         -4.37      -6.331957  0      2      
 ------------------------------------
 Converged After 10 Iterations.
 
-Energy Contributions Relative to Reference Atoms:(reference = -2052.166737)
+Energy Contributions Relative to Reference Atoms:(reference = -2065.833357)
 -------------------------
-Kinetic:        -28.315578
-Potential:      +33.666525
-External:        -0.146118
-XC:             -11.172366
+Kinetic:        -29.245721
+Potential:      +34.514201
+External:        -0.703803
+XC:             -10.636535
 Entropy (-ST):   -0.000000
-Local:           -0.283746
+Local:           -0.260098
 -------------------------
-Free Energy:     -6.251282
-Zero Kelvin:     -6.251282
+Free Energy:     -6.331957
+Zero Kelvin:     -6.331957
 
-Fermi Level: -2.69059
+Fermi Level: -2.66722
  Band   Eigenvalues  Occupancy
-   0    -25.93098     2.00000
-   1    -12.78516     2.00000
-   2     -8.79335     2.00000
-   3     -6.33097     2.00000
-   4      0.94980     0.00000
-   5      3.30051     0.00000
+   0    -26.19011     2.00000
+   1    -12.85570     2.00000
+   2     -8.84261     2.00000
+   3     -6.28792     2.00000
+   4      0.95348     0.00000
+   5      3.24130     0.00000
 
 
-Dipole Moment: [  1.99557077e-01   3.08322246e-01  -2.75037377e-12]
+Dipole Moment: [  1.77860746e-01   2.96597259e-01  -2.93471723e-12]
 
 Forces in eV/Ang:
-  0 O    -0.75937   -1.85715   -0.00000
-  1 H    -0.24994    1.51690   -0.00000
-  2 H     1.11826    0.37632   -0.00000
+  0 O    -0.23007   -1.89187   -0.00000
+  1 H    -0.13274    1.48651   -0.00000
+  2 H     1.44250    0.30363   -0.00000

@@ -89,19 +89,21 @@ class calc_qmscme:
             # Interact with all SCME:
             for i in range(nMM):
                 cm = mm[i*mp:(i+1)*mp].get_center_of_mass()
-                r  = (cm - pos)
+                r  = (cm - pos) """ UNIT PROBLEM? """
                 d  = np.sqrt(((cm - pos)**2).sum())
                 mUr = dipoles[i].dot(r)
-                Q   = qpoles[:,:,i]
+                #Q   = qpoles[:,:,i] no qpoles for now
 
-                energy += mUr / d**3 * ch
-                for j in range(3):
-                    for k in range(3):
-                        energy += Q[j,k]*r[j]*r[k] / d**5 * ch
+                energy += mUr / d**3 * ch * k_c
+                #for j in range(3): no qpoles for now
+                    #for k in range(3):
+                        #energy += Q[j,k]*r[j]*r[k] / d**5 * ch 
+                        # weird stuff never used below here:
                         #if j==k:
                         #    energy -= 1./3 * Q[j,k]*r[j]**2 / d**5 * ch
 
-        energy /= 4.8
+        #energy /= 4.8 for old debye conversion. Now done in CALC_SCME
+
         """ forces """
         forces = np.zeros((len(qm)+len(mm),3))
         # Forces: MM dipoles on QM nuclei - CHECK UNITS
@@ -116,7 +118,7 @@ class calc_qmscme:
                 R = (cm - pos)
                 d = np.linalg.norm(R)
                 Ru = R/d # CHECK SIGN OF f_a !!
-                f_a[a,:] +=  ch/d**3 * (3 * np.dot(mu_i,Ru)*Ru - mu_i) 
+                f_a[a,:] +=  ch/d**3 * (3 * np.dot(mu_i,Ru)*Ru - mu_i) * k_c 
                 #f_a[a,:] += ch * (3 * (mUr / d**4)  - dipoles[i] / d**3) * r_u
 
         print 'f_a (dipoles on qm nuc):'
@@ -132,7 +134,7 @@ class calc_qmscme:
                 R = (cm - pos)  
                 d = np.linalg.norm(R)
                 Ru = R/d # CHECK SIGN OF FORCES
-                f_iCM[i/mp,:] -= ch/d**3 * (3 * np.dot(mu_i,Ru)*Ru - mu_i)
+                f_iCM[i/mp,:] -= ch/d**3 * (3 * np.dot(mu_i,Ru)*Ru - mu_i) * k_c
 
                 #f_iCM[i/mp,:] += ch *(dip/d**3 - 3*mUr/d**4) * r_u
        
